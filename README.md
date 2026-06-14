@@ -1,6 +1,6 @@
 # Win11Debloat-skill-zh
 
-把 Win11Debloat 的英文配置界面翻译成中文——这是一份 AI Skill，不是翻译好的成品。
+把 Win11Debloat 的英文配置界面翻译成中文——这是一份 AI Skill，翻译好的成品可参考右侧 Release。
 
 ## 这是什么
 
