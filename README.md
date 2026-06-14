@@ -10,6 +10,23 @@
 
 > **已测试版本**：[Win11Debloat v2026.06.11](https://github.com/Raphire/Win11Debloat/releases/tag/2026.06.11) 工作正常。
 
+## 快速开始
+
+```bash
+git clone https://github.com/iamblack6/Win11Debloat-skill-zh.git
+cd Win11Debloat-skill-zh
+```
+
+在当前目录启动你的 AI 工具（Claude、opencode、Codex 等），在对话框中输入：
+
+> **运行这个项目**
+
+AI 会自动完成翻译，生成 `Win11Debloat-cn/`。最后在 Windows 上执行：
+
+```powershell
+.\Win11Debloat-cn\Win11Debloat.ps1
+```
+
 ## 5 分钟搞定
 
 ### 第 1 步：创建工作目录
