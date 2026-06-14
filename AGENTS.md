@@ -57,7 +57,7 @@ cp -r Win11Debloat/ Win11Debloat-cn/
 
 ### 步骤 5：自检
 
-翻完之后跑这几项，确保没问题再告诉用户：
+翻完之后**自动跑质量检查**，全部通过才告诉用户结果：
 
 - [ ] Label 全部中文化，没有漏掉的英文
 - [ ] ApplyText 全部中文化，`null` 的空位不算漏（EN 原版就没有）
@@ -65,8 +65,10 @@ cp -r Win11Debloat/ Win11Debloat-cn/
 - [ ] ApplyUndoText 全部中文化
 - [ ] ToolTip 全部中文化
 - [ ] Apps.json 的 Description 全部中文化
-- [ ] Category.Name 没有被翻成中文（翻了就完蛋，所有 Feature 归属断裂）
+- [ ] 标识符字段未被翻译（FeatureId、Category.Name、AppId 等）
 - [ ] 三个文件都有 BOM
+
+> 自检代码自动运行，不要在输出里列一遍清单。只告诉用户结果数据和 token 消耗。
 
 ## 高频错误（禁止事项）
 
@@ -90,9 +92,10 @@ cp -r Win11Debloat/ Win11Debloat-cn/
   Features.json：100 Label、68 ToolTip、99 ApplyText、79 UndoLabel、79 ApplyUndoText → 全部中文
   Apps.json：147 Description → 全部中文
   三个文件均已写入 UTF-8 BOM
+  本次翻译消耗约 XXk tokens
 ```
 
-然后问一句："要我跑质量检查吗？"
+> 质量检查已自动跑完，不再额外询问。
 
 接着告诉用户部署方式：
 

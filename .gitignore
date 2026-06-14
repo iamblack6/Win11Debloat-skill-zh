@@ -1,3 +1,5 @@
 .DS_Store
 __pycache__/
 *.pyc
+Win11Debloat/
+Win11Debloat-cn/
