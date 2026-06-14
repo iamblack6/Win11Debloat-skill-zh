@@ -94,6 +94,10 @@ cp -r Win11Debloat/ Win11Debloat-cn/
 
 然后问一句："要我跑质量检查吗？"
 
+接着告诉用户部署方式：
+
+> 翻译后的 `Win11Debloat-cn/` 是完整复制的项目，直接 `.\Win11Debloat-cn\Win11Debloat.ps1` 即可运行。也可以把三个 JSON 覆盖回英文原版的 Config 目录用原版运行。
+
 ## 你还要知道
 
 - SKILL.md 是唯一的翻译规范来源。如果 SKILL.md 和 AGENTS.md 有矛盾，以 SKILL.md 为准。

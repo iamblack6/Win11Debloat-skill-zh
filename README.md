@@ -8,6 +8,8 @@
 
 `Win11Debloat-skill-zh` 是一份"AI 翻译说明书"（Skill）。你把它喂给任意 AI（Cursor、ChatGPT、Claude、Cline……都可以），AI 就能照着规则把英文配置逐条翻译成中文，而且不会乱码、不会翻坏标识符、不会漏字段。
 
+> **已测试版本**：[Win11Debloat v2026.06.11](https://github.com/Raphire/Win11Debloat/releases/tag/2026.06.11) 工作正常。
+
 ## 5 分钟搞定
 
 ### 第 1 步：创建工作目录
@@ -130,7 +132,10 @@ FeatureId 没碰，Label 翻了——这就是整份 SKILL.md 的核心逻辑：
 
 **Q: 翻译完怎么用？**
 
-把 `Win11Debloat-cn/Config/` 里的文件覆盖到 Win11Debloat 原项目的 `Config/` 目录，然后正常运行 Win11Debloat 就行了。
+两种方式：
+
+- **替换原版**：把 `Win11Debloat-cn/Config/` 下的三个 JSON 覆盖到英文原版 `Win11Debloat/Config/`，然后运行 `Win11Debloat\Win11Debloat.ps1`
+- **直接运行**：本 Skill 通过完整复制项目目录来创建翻译副本，`Win11Debloat-cn/` 本身就是可运行项目，直接 `.\Win11Debloat-cn\Win11Debloat.ps1` 即可
 
 **Q: 项目更新了怎么办？**
 
