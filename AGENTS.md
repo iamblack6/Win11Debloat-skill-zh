@@ -34,7 +34,7 @@
 ### 步骤 2：复制一份英文版
 
 ```bash
-cp -r Win11Debloat/ Win11Debloat-cn/
+cp -r Win11Debloat/ Win11Debloat-cn/ && rm -rf Win11Debloat-cn/.git
 ```
 
 > 输出目录名默认 `Win11Debloat-cn`，如果用户给了别的名字就用用户的。永远不改英文原版。
