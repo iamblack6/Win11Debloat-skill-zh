@@ -1,0 +1,269 @@
+# Win11Debloat 简体中文本地化 — 特例覆盖
+# 以下条目跳过常规翻译规则，直接使用指定译文。
+# 来源：SKILL.md 中标记的特殊情况和人工校验结果。
+
+overrides:
+  # ── 基础 ──
+  - key: Label
+    feature_id: DisableUpdateASAP
+    translation: 关闭尽快获取更新功能
+    reason: 注册表操作是 Turn Off，Label 用「关闭」而非原 EN Label 的「阻止」
+
+  - key: ApplyText
+    feature_id: DisableUpdateASAP
+    translation: 正在关闭 Windows 尽快获取更新功能
+    reason: 同上
+
+  - key: Label
+    feature_id: DisableMouseAcceleration
+    translation: 禁用鼠标加速（提高指针精确度）
+    reason: Windows 中文 UI 中此功能叫「提高指针精确度」
+
+  - key: Label
+    feature_id: PreventUpdateAutoReboot
+    translation: 阻止登录后更新自动重启
+    reason: EN Label 动词确为 Prevent，无歧义
+
+  - key: ApplyText
+    feature_id: PreventUpdateAutoReboot
+    translation: 正在阻止登录后更新自动重启
+    reason: 同上
+
+  # ── UiGroup 翻译 ──
+  - key: UiGroup.Label
+    group_id: CombineButtons
+    translation: 在主显示器上合并任务栏按钮
+    reason: 补全介词「在...上」使中文通顺
+
+  - key: UiGroup.Label
+    group_id: ShowTabsInAltTab
+    translation: 贴靠或按 Alt+Tab 时显示应用中的标签页
+    reason: 包含 EN 中的所有场景信息
+
+  - key: UiGroup.Label
+    group_id: MultiMon
+    translation: 在多显示器上显示任务栏应用
+    reason: 中文自然表达
+
+  - key: UiGroup.Label
+    group_id: SearchIcon
+    translation: 任务栏搜索样式
+    reason: 直接翻译
+
+  - key: UiGroup.Label
+    group_id: CombineMMButtons
+    translation: 在副显示器上合并任务栏按钮
+    reason: 与主显示器对称
+
+  - key: UiGroup.Label
+    group_id: ClearStart
+    translation: 移除开始菜单中的固定应用
+    reason: 简洁表达
+
+  - key: UiGroup.Label
+    group_id: ExplorerLocation
+    translation: 文件资源管理器打开位置
+    reason: 中文自然表达
+
+  - key: UiGroup.Label
+    group_id: DriveLetterPosition
+    translation: 驱动器号显示位置
+    reason: 描述性翻译
+
+  - key: UiGroup.Label
+    group_id: StartAllAppsView
+    translation: 开始菜单「所有应用」视图
+    reason: 用「」包裹 UI 文本
+
+  # ── UiGroup ToolTip ──
+  - key: UiGroup.ToolTip
+    group_id: SearchIcon
+    translation: 此设置允许你自定义任务栏上搜索框的外观。
+
+  - key: UiGroup.ToolTip
+    group_id: MultiMon
+    translation: 此设置允许你选择使用多个显示器时任务栏应用按钮的显示位置。
+
+  - key: UiGroup.ToolTip
+    group_id: CombineButtons
+    translation: 此设置允许你选择主显示器上任务栏按钮的合并方式。
+
+  - key: UiGroup.ToolTip
+    group_id: CombineMMButtons
+    translation: 此设置允许你选择副显示器上任务栏按钮的合并方式。
+
+  - key: UiGroup.ToolTip
+    group_id: ClearStart
+    translation: 此设置允许你快速移除开始菜单中的所有固定应用。
+
+  - key: UiGroup.ToolTip
+    group_id: ExplorerLocation
+    translation: 此设置允许你选择文件资源管理器打开的默认位置。
+
+  - key: UiGroup.ToolTip
+    group_id: DriveLetterPosition
+    translation: 此设置允许你选择文件资源管理器中驱动器号的显示位置。
+
+  - key: UiGroup.ToolTip
+    group_id: ShowTabsInAltTab
+    translation: 此设置允许你选择贴靠窗口或按 Alt+Tab 时是否显示应用中的标签页（如 Edge 浏览器标签页）。
+
+  - key: UiGroup.ToolTip
+    group_id: StartAllAppsView
+    translation: 此设置允许你更改开始菜单中「所有应用」部分的布局，或完全隐藏它。隐藏此部分可能会导致难以找到系统上已安装的应用。此功能使用策略，部分设置将被锁定。
+
+  # ── UiGroup Value Label ──
+  - key: UiGroup.Value
+    group_id: SearchIcon
+    value: "Show search box (Default)"
+    translation: 显示搜索框（默认）
+
+  - key: UiGroup.Value
+    group_id: SearchIcon
+    value: "Show search icon and label"
+    translation: 显示搜索图标和标签
+
+  - key: UiGroup.Value
+    group_id: SearchIcon
+    value: "Show search icon only"
+    translation: 仅显示搜索图标
+
+  - key: UiGroup.Value
+    group_id: SearchIcon
+    value: Hide
+    translation: 隐藏
+
+  - key: UiGroup.Value
+    group_id: MultiMon
+    value: "All taskbars (Default)"
+    translation: 所有任务栏（默认）
+
+  - key: UiGroup.Value
+    group_id: MultiMon
+    value: "Main taskbar and taskbar where window is open"
+    translation: 主任务栏和窗口所在的任务栏
+
+  - key: UiGroup.Value
+    group_id: MultiMon
+    value: "Taskbar where window is open"
+    translation: 窗口所在的任务栏
+
+  - key: UiGroup.Value
+    group_id: CombineButtons
+    value: "Always (Default)"
+    translation: 始终（默认）
+
+  - key: UiGroup.Value
+    group_id: CombineButtons
+    value: "When taskbar is full"
+    translation: 任务栏已满时
+
+  - key: UiGroup.Value
+    group_id: CombineButtons
+    value: Never
+    translation: 从不
+
+  - key: UiGroup.Value
+    group_id: CombineMMButtons
+    value: "Always (Default)"
+    translation: 始终（默认）
+
+  - key: UiGroup.Value
+    group_id: CombineMMButtons
+    value: "When taskbar is full"
+    translation: 任务栏已满时
+
+  - key: UiGroup.Value
+    group_id: CombineMMButtons
+    value: Never
+    translation: 从不
+
+  - key: UiGroup.Value
+    group_id: ClearStart
+    value: "Remove for the selected user"
+    translation: 为当前用户移除
+
+  - key: UiGroup.Value
+    group_id: ClearStart
+    value: "Remove for all users"
+    translation: 为所有用户移除
+
+  - key: UiGroup.Value
+    group_id: ExplorerLocation
+    value: "Home (Default)"
+    translation: 主页（默认）
+
+  - key: UiGroup.Value
+    group_id: ExplorerLocation
+    value: "This PC"
+    translation: 此电脑
+
+  - key: UiGroup.Value
+    group_id: ExplorerLocation
+    value: Downloads
+    translation: 下载
+
+  - key: UiGroup.Value
+    group_id: ExplorerLocation
+    value: OneDrive
+    translation: OneDrive
+
+  - key: UiGroup.Value
+    group_id: DriveLetterPosition
+    value: "Show drive letters after drive label (Default)"
+    translation: 驱动器标签后显示驱动器号（默认）
+
+  - key: UiGroup.Value
+    group_id: DriveLetterPosition
+    value: "Show drive letters before drive label"
+    translation: 驱动器标签前显示驱动器号
+
+  - key: UiGroup.Value
+    group_id: DriveLetterPosition
+    value: "Show network drive letters before drive label"
+    translation: 驱动器标签前显示网络驱动器号
+
+  - key: UiGroup.Value
+    group_id: DriveLetterPosition
+    value: "Hide all drive letters"
+    translation: 隐藏所有驱动器号
+
+  - key: UiGroup.Value
+    group_id: ShowTabsInAltTab
+    value: "Don't show tabs"
+    translation: 不显示标签页
+
+  - key: UiGroup.Value
+    group_id: ShowTabsInAltTab
+    value: "Show 3 most recent tabs (Default)"
+    translation: 显示最近 3 个标签页（默认）
+
+  - key: UiGroup.Value
+    group_id: ShowTabsInAltTab
+    value: "Show 5 most recent tabs"
+    translation: 显示最近 5 个标签页
+
+  - key: UiGroup.Value
+    group_id: ShowTabsInAltTab
+    value: "Show 20 most recent tabs"
+    translation: 显示最近 20 个标签页
+
+  - key: UiGroup.Value
+    group_id: StartAllAppsView
+    value: Hide
+    translation: 隐藏
+
+  - key: UiGroup.Value
+    group_id: StartAllAppsView
+    value: "Category (Default)"
+    translation: 类别（默认）
+
+  - key: UiGroup.Value
+    group_id: StartAllAppsView
+    value: Grid
+    translation: 网格
+
+  - key: UiGroup.Value
+    group_id: StartAllAppsView
+    value: List
+    translation: 列表

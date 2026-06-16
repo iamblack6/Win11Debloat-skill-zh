@@ -1,7 +1,10 @@
 .DS_Store
 __pycache__/
 *.pyc
+.pipeline-temp/
 Win11Debloat/
-Win11Debloat-cn/
+Win11Debloat-cn-old/
+Win11Debloat-zh/
 Win11Debloat-cn2/
+Win11Debloat-*/
 Win11Debloat-cn.7z

@@ -1,162 +1,128 @@
 # Win11Debloat-skill-zh
 
-把 Win11Debloat 的英文配置界面翻译成中文——这是一份 AI Skill，翻译好的成品可参考右侧 Release。
+一键将 [Win11Debloat](https://github.com/Raphire/Win11Debloat) 的英文配置界面翻译为简体中文。
 
-## 这是什么
+Win11Debloat 是 Windows 11 优化工具，能关闭广告、遥测、预装应用——但 400+ 配置项全是英文。本项目提供一条命令完成全部翻译，自动处理 UTF-8 BOM、标识符保护和 CJK 排版。
 
-[Win11Debloat](https://github.com/Raphire/Win11Debloat) 是一个 Windows 11 优化工具，能一键关掉广告、遥测、预装应用。但它的 400+ 个配置项全是英文的。
-
-`Win11Debloat-skill-zh` 是一份"AI 翻译说明书"（Skill）。你把它喂给任意 AI（Cursor、ChatGPT、Claude、Cline……都可以），AI 就能照着规则把英文配置逐条翻译成中文，而且不会乱码、不会翻坏标识符、不会漏字段。
-
-> **已测试版本**：[Win11Debloat v2026.06.11](https://github.com/Raphire/Win11Debloat/releases/tag/2026.06.11) 工作正常。
+> 已测试 [Win11Debloat v2026.06.11](https://github.com/Raphire/Win11Debloat/releases/tag/2026.06.11)
 
 ## 快速开始
 
 ```bash
 git clone https://github.com/iamblack6/Win11Debloat-skill-zh.git
 cd Win11Debloat-skill-zh
+git clone https://github.com/Raphire/Win11Debloat.git
+pip install pyyaml
+python cli.py zh-CN
 ```
 
-在当前目录启动你的 AI 工具（Claude、opencode、Codex 等），在对话框中输入：
-
-> **运行这个项目**
-
-AI 会自动完成翻译，生成 `Win11Debloat-cn/`。最后在 Windows 上执行：
+输出 `Win11Debloat-zh/`，在 Windows 上运行：
 
 ```powershell
-.\Win11Debloat-cn\Win11Debloat.ps1
+.\Win11Debloat-zh\Win11Debloat.ps1
 ```
 
-## 5 分钟搞定
-
-### 第 1 步：创建工作目录
-
-```bash
-mkdir my-debloat-cn
-cd my-debloat-cn
-```
-
-### 第 2 步：下载翻译规则（本项目）
-
-```bash
-git clone https://github.com/iamblack6/Win11Debloat-skill-zh.git
-```
-
-### 第 3 步：下载英文原版
-
-```bash
-git clone https://github.com/Raphire/Win11Debloat.git
-```
-
-完成后目录长这样：
+## 翻译管线
 
 ```
-my-debloat-cn/
-├── Win11Debloat-skill-zh/    # 翻译规则（SKILL.md 在里头）
-│   ├── SKILL.md        # ← AI 就读这个
-│   ├── AGENTS.md
-│   └── README.md
-└── Win11Debloat/       # 英文原版
-    └── Config/
-        ├── Features.json
-        ├── Apps.json
-        └── DefaultSettings.json
+Extract → Translate → Assemble → Validate
 ```
 
-### 第 4 步：把 SKILL.md 喂给 AI
+| 步骤 | 做什么 | 结果 |
+|---|---|---|
+| Extract | 从英文 JSON 拆出 621 个独立翻译单元 | 扁平 JSON |
+| Translate | 规则优先翻译 + 参考译文回填 | 100% 覆盖 |
+| Assemble | 重组 JSON 结构 + 写 UTF-8 BOM | 完整项目 |
+| Validate | BOM / 标识符 / 字段数 / 漏翻检查 | PASS / FAIL |
 
-打开你用的 AI 工具，把 `Win11Debloat-skill-zh/SKILL.md` 丢进去，然后说：
+## 翻译策略
 
-> 按照 SKILL.md 的翻译规范，把 `Win11Debloat/` 翻译成中文，输出到 `Win11Debloat-cn/`。
+引擎按优先级逐级命中，未命中时才回退到参考译文或 LLM：
 
-就这么一句话。AI 会自动完成全部翻译。
+1. **Override** — 硬编码特例（如 `DisableUpdateASAP` → 关闭）
+2. **Glossary 精确匹配** — 术语表整句命中
+3. **句式模板** — 正则替换（`Disable X` → 禁用 X）
+4. **词汇级替换** — 术语表子串替换
+5. **参考回填** — 从已有中文译本填充
+6. **LLM 翻译** — 接口已预留，接入 OpenAI/Claude/DeepSeek 即可
 
-**各种工具怎么投喂：**
+所有翻译规则集中在 `languages/zh-CN/` 下三个 YAML 文件：
 
-| 工具 | 操作 |
-|---|---|
-| Cursor | 把 `SKILL.md` 拖进侧边栏，然后在 Composer 里发指令 |
-| Cline | 对话里 `@SKILL.md`，再输入指令 |
-| ChatGPT / Claude 网页版 | 复制 SKILL.md 全文，粘贴进对话框，附上指令 |
-| Gemini | 上传 SKILL.md 作为附件，输入指令 |
-| Continue | 用 `@file` 引用 SKILL.md |
-| Windsurf | 放进 `.windsurfrules`，或者直接 @ 引用 |
-| Copilot | 放进 `.github/copilot-instructions.md` |
+```yaml
+# glossary.yaml — 术语表
+Disable: 禁用
+Microsoft: Microsoft    # 品牌名不译
+"File Explorer": 文件资源管理器
 
-### 第 5 步：检查结果
+# patterns.yaml — 句式模板
+- pattern: '^Disable (.+)$'
+  replacement: '禁用 \1'
 
-AI 跑完后，生成的文件在 `Win11Debloat-cn/`（或你指定的目录名）。可以跑这几行验证：
-
-```bash
-# 检查 BOM（没有 BOM 的话 PowerShell 会乱码）
-python3 -c "
-for f in ['Features.json','Apps.json','DefaultSettings.json']:
-    with open(f'Win11Debloat-cn/Config/{f}','rb') as fp:
-        ok = fp.read(3).hex() == 'efbbbf'
-    print(f'{f}: {\"OK\" if ok else \"MISSING BOM\"}')"
-
-# 检查有没有漏翻的英文
-python3 -c "
-import json
-d = json.load(open('Win11Debloat-cn/Config/Features.json', encoding='utf-8-sig'))
-en = [f['FeatureId'] for f in d['Features']
-      if f.get('UndoLabel') and all(ord(c)<128 for c in f['UndoLabel'].replace(\"'\",'').replace('-','').replace(' ',''))]
-print(f'UndoLabel 英文残留: {len(en)} 条') if en else print('全部中文，OK')"
+# overrides.yaml — 特例
+- key: Feature.Label
+  feature_id: DisableUpdateASAP
+  translation: 关闭尽快获取更新功能
 ```
-
-全部 OK 就说明翻译成功。把 `Win11Debloat-cn/` 里的文件替换到 Win11Debloat 原项目里就能用了。
 
 ## 翻什么、不翻什么
 
-| 文件 | 翻的内容 | 不动的（标识符，动了就坏） |
+| 文件 | 翻译 | 不碰（标识符） |
 |---|---|---|
-| Features.json | Label、ToolTip、ApplyText、UndoLabel、ApplyUndoText | FeatureId、Category.Name、RegistryKey |
+| Features.json | Label、ToolTip、ApplyText、UndoLabel、ApplyUndoText、UiGroup 文本 | FeatureId、Category.Name、RegistryKey、GroupId |
 | Apps.json | Description | FriendlyName、AppId、Recommendation |
-| DefaultSettings.json | 全都不翻 | 都是 ID 引用 |
+| DefaultSettings.json | 全部不翻 | FeatureId 引用列表 |
 
-## 规则速览
+## 添加新语言
 
-| 规则 | 例子 |
-|---|---|
-| 品牌名不译 | `Disable Microsoft Copilot` → `禁用 Microsoft Copilot` |
-| 引号用 `「」` | `"All Apps"` → `「所有应用」` |
-| 中英文间加空格 | `禁用Windows` → `禁用 Windows` |
-| `DisableUpdateASAP` 用「关闭」 | 注册表操作是 Turn Off，不用「阻止」 |
-| Category.Name 不要碰 | 动了会导致所有功能列表错乱 |
-| 文件必须 UTF-8 BOM | 否则 PowerShell 打开变乱码 |
-
-## 原理
-
-翻译前 AI 看到的是：
-
-```json
-{ "FeatureId": "DisableTelemetry", "Label": "Disable telemetry, tracking & targeted ads" }
+```bash
+cp -r languages/zh-CN languages/ja
+# 编辑 languages/ja/glossary.yaml → 日语术语
+# 编辑 languages/ja/patterns.yaml → 日语句式
+python cli.py ja
 ```
 
-翻译后：
+## 目录结构
 
-```json
-{ "FeatureId": "DisableTelemetry", "Label": "禁用遥测、跟踪和定向广告" }
+```
+Win11Debloat-skill-zh/
+├── cli.py                        # 总入口
+├── pipeline/
+│   ├── extract.py                # 提取翻译单元
+│   ├── translate.py              # 翻译引擎
+│   ├── assemble.py               # 重组 JSON + BOM
+│   └── validate.py               # 质量校验
+├── languages/zh-CN/
+│   ├── glossary.yaml             # 术语表（100+ 条）
+│   ├── patterns.yaml             # 句式模板
+│   └── overrides.yaml            # 特例覆盖
+├── SKILL.md                      # AI Skill 指引
+└── README.md                     # 你正在读的文件
 ```
 
-FeatureId 没碰，Label 翻了——这就是整份 SKILL.md 的核心逻辑：**标识符不动，用户看的文本翻译**。
+## FAQ
 
-## 常见问题
+**Q: 上游 Win11Debloat 更新了怎么办？**
 
-**Q: 为什么不用现成的翻译软件？**
+```bash
+cd Win11Debloat && git pull && cd ..
+python cli.py zh-CN
+```
 
-因为翻译软件不认识 Category.Name 是标识符，翻了就坏。而且不会自动加 BOM，PowerShell 读不了。
+规则配置与英文版本解耦，新增字段自动提取、翻译、校验。
 
 **Q: 翻译完怎么用？**
 
 两种方式：
+- 直接运行 `.\Win11Debloat-zh\Win11Debloat.ps1`
+- 把 `Win11Debloat-zh/Config/` 下三个 JSON 覆盖回英文原版
 
-- **替换原版**：把 `Win11Debloat-cn/Config/` 下的三个 JSON 覆盖到英文原版 `Win11Debloat/Config/`，然后运行 `Win11Debloat\Win11Debloat.ps1`
-- **直接运行**：本 Skill 通过完整复制项目目录来创建翻译副本，`Win11Debloat-cn/` 本身就是可运行项目，直接 `.\Win11Debloat-cn\Win11Debloat.ps1` 即可
+**Q: 为什么不用翻译软件批量翻译？**
 
-**Q: 项目更新了怎么办？**
+翻译软件不认识 Category.Name 是标识符，翻了会导致所有功能归属断裂。本管线的 validate 步骤会严格校验标识符未被篡改。
 
-重新 clone 最新英文原版，再喂一次 SKILL.md 给 AI。翻译规则是稳定的，英文变多少都能处理。
+**Q: 为什么必须 UTF-8 BOM？**
+
+Windows PowerShell `Get-Content` 遇到无 BOM UTF-8 文件会按系统 ANSI（中文 GBK）解码，所有中文变乱码。assemble 步骤自动写入 BOM。
 
 ## 许可
 

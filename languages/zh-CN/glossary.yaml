@@ -1,0 +1,101 @@
+# Win11Debloat 简体中文本地化 — 术语表
+# 翻译管线在处理每个字段时，先查此表做精确替换。
+
+# ── 动词 ──
+Disable: 禁用
+Enable: 启用
+Hide: 隐藏
+Show: 显示
+Remove: 移除
+Uninstall: 卸载
+Block: 阻止
+Prevent: 阻止
+Allow: 允许
+Set: 设置
+Change: 更改
+Add: 添加
+"Turn off": 关闭
+"Turn on": 开启
+
+# ── ApplyText 动词（正在...） ──
+Disabling: 正在禁用
+Enabling: 正在启用
+Hiding: 正在隐藏
+Showing: 正在显示
+Removing: 正在卸载
+Uninstalling: 正在卸载
+Blocking: 正在阻止
+Preventing: 正在阻止
+Allowing: 正在允许
+Setting: 正在设置
+Changing: 正在更改
+Adding: 正在添加
+"Turning off": 正在关闭
+"Turning on": 正在开启
+Configuring: 正在配置
+Applying: 正在应用
+Restoring: 正在恢复
+
+# ── Windows 专有名词 ──
+Windows: Windows
+Microsoft: Microsoft
+Edge: Edge
+Copilot: Copilot
+OneDrive: OneDrive
+Xbox: Xbox
+BitLocker: BitLocker
+PowerShell: PowerShell
+"File Explorer": 文件资源管理器
+"Start menu": 开始菜单
+Taskbar: 任务栏
+Bing: Bing
+Cortana: Cortana
+Skype: Skype
+LinkedIn: LinkedIn
+"Microsoft 365": Microsoft 365
+Widgets: Widgets
+Recall: Recall
+Notepad: 记事本
+Paint: 画图
+"Phone Link": Phone Link
+"Game Bar": Game Bar
+"Delivery Optimization": 传递优化
+"Storage Sense": 存储感知
+"Snap Layouts": 贴靠布局
+"Snap Assist": 贴靠辅助
+"Fast Startup": 快速启动
+"Modern Standby": 现代待机
+"Sticky Keys": 粘滞键
+"Activity History": 活动历史记录
+"Desktop Spotlight": 桌面聚焦
+"System Restore": 系统还原
+"Find My Device": 查找我的设备
+"Location Services": 位置服务
+"Click to Do": Click to Do
+
+# ── 第三方品牌名 ──
+Brave: Brave
+Spotify: Spotify
+Netflix: Netflix
+TikTok: TikTok
+"Disney+": "Disney+"
+"Prime Video": "Prime Video"
+Instagram: Instagram
+Facebook: Facebook
+Twitter: Twitter
+Pinterest: Pinterest
+Adobe: Adobe
+Express: Express
+Dropbox: Dropbox
+HP: HP
+Dell: Dell
+Lenovo: Lenovo
+McAfee: McAfee
+Norton: Norton
+"Candy Crush": "Candy Crush"
+Farmville: Farmville
+
+# ── 其他 ──
+OEM: OEM
+pre-installed: 预装
+bloatware: 臃肿软件

@@ -1,0 +1,75 @@
+# Win11Debloat zh-CN sentence patterns
+# Pipeline applies regex replacements; matched fields skip LLM.
+
+# Label patterns: "Disable X" -> "禁用 X"
+labels:
+  - pattern: '^Disable (.+)$'
+    replacement: '禁用 \1'
+  - pattern: '^Enable (.+)$'
+    replacement: '启用 \1'
+  - pattern: '^Hide (.+)$'
+    replacement: '隐藏 \1'
+  - pattern: '^Show (.+)$'
+    replacement: '显示 \1'
+  - pattern: '^Remove (.+)$'
+    replacement: '移除 \1'
+  - pattern: '^Uninstall (.+)$'
+    replacement: '卸载 \1'
+  - pattern: '^Block (.+)$'
+    replacement: '阻止 \1'
+  - pattern: '^Prevent (.+)$'
+    replacement: '阻止 \1'
+  - pattern: '^Allow (.+)$'
+    replacement: '允许 \1'
+  - pattern: '^Turn off (.+)$'
+    replacement: '关闭 \1'
+  - pattern: '^Turn on (.+)$'
+    replacement: '开启 \1'
+  - pattern: '^Add (.+)$'
+    replacement: '添加 \1'
+  - pattern: '^Set (.+)$'
+    replacement: '设置 \1'
+
+# ApplyText patterns: "Disabling X..." -> "正在禁用 X..."
+apply_text:
+  - pattern: '^Disabling (.+)$'
+    replacement: '正在禁用 \1'
+  - pattern: '^Enabling (.+)$'
+    replacement: '正在启用 \1'
+  - pattern: '^Hiding (.+)$'
+    replacement: '正在隐藏 \1'
+  - pattern: '^Showing (.+)$'
+    replacement: '正在显示 \1'
+  - pattern: '^Removing (.+)$'
+    replacement: '正在卸载 \1'
+  - pattern: '^Blocking (.+)$'
+    replacement: '正在阻止 \1'
+  - pattern: '^Preventing (.+)$'
+    replacement: '正在阻止 \1'
+  - pattern: '^Allowing (.+)$'
+    replacement: '正在允许 \1'
+  - pattern: '^Setting (.+)$'
+    replacement: '正在设置 \1'
+  - pattern: '^Changing (.+)$'
+    replacement: '正在更改 \1'
+  - pattern: '^Adding (.+)$'
+    replacement: '正在添加 \1'
+  - pattern: '^Turning off (.+)$'
+    replacement: '正在关闭 \1'
+  - pattern: '^Turning on (.+)$'
+    replacement: '正在开启 \1'
+
+# ToolTip patterns: "This setting..." -> "此设置..."
+tooltips:
+  - pattern: '^This setting (.+)$'
+    replacement: '此设置\1'
+  - pattern: '^This will (.+)$'
+    replacement: '此操作将\1'
+  - pattern: '^This feature (.+)$'
+    replacement: '此功能\1'
+
+# CJK spacing (applied in assemble phase)
+cjk_spacing:
+  enabled: true
+  cjk_latin: true
+  slash_with_cjk: true
